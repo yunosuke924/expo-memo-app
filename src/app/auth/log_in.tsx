@@ -1,17 +1,27 @@
 import Button from '@/components/Button'
 import { Link, router } from 'expo-router'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native'
+import { auth } from '@/config'
 
-const handleOnPress = (): void => {
-  // TODO:ログイン処理を行う
-  router.replace('/memo/list')
+const handleOnPress = (email: string, password: string): void => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((credential) => {
+      console.log(credential.user.uid)
+      router.replace('/memo/list')
+    })
+    .catch((e) => {
+      const { message } = e as { message: string }
+      Alert.alert(message)
+    })
 }
 
 const Login = (): JSX.Element => {
@@ -43,10 +53,15 @@ const Login = (): JSX.Element => {
           placeholder='パスワード'
           textContentType='password'
         />
-        <Button label='ログイン' onPress={handleOnPress} />
+        <Button
+          label='ログイン'
+          onPress={() => {
+            handleOnPress(email, password)
+          }}
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>アカウントをお持ちでない方は</Text>
-          <Link href='/auth/sign_up' asChild>
+          <Link href='/auth/sign_up' asChild replace>
             <TouchableOpacity>
               <Text style={styles.footerTextLink}>こちら</Text>
             </TouchableOpacity>

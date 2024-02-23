@@ -4,15 +4,24 @@ import {
   Text,
   StyleSheet,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native'
 import { Link, router } from 'expo-router'
 import { useState } from 'react'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/config'
 
-const handleOnPress = (): void => {
-  // TODO:ログイン処理を行う
-  // pushだと履歴が残るので、replaceを使って履歴を残さないようにする。
-  router.replace('/memo/list')
+const handleOnPress = (email: string, password: string): void => {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((credential) => {
+      console.log(credential.user.uid)
+      router.replace('/memo/list') // pushだと履歴が残るので、replaceを使って履歴を残さないようにする。
+    })
+    .catch((e) => {
+      const { message } = e as { message: string }
+      Alert.alert(message)
+    })
 }
 
 const Login = (): JSX.Element => {
@@ -44,10 +53,15 @@ const Login = (): JSX.Element => {
           placeholder='パスワード'
           textContentType='password'
         />
-        <Button label='新規登録' onPress={handleOnPress} />
+        <Button
+          label='新規登録'
+          onPress={() => {
+            handleOnPress(email, password)
+          }}
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>アカウントをお持ちの方は</Text>
-          <Link href='/auth/log_in' asChild>
+          <Link href='/auth/log_in' asChild replace>
             <TouchableOpacity>
               <Text style={styles.footerTextLink}>こちら</Text>
             </TouchableOpacity>
