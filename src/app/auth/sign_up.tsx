@@ -16,7 +16,7 @@ const handleOnPress = (email: string, password: string): void => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((credential) => {
       console.log(credential.user.uid)
-      router.replace('/memo/list') // pushだと履歴が残るので、replaceを使って履歴を残さないようにする。
+      router.replace('/memo/list')
     })
     .catch((e) => {
       const { message } = e as { message: string }
