@@ -9,10 +9,11 @@ import {
 interface Props {
   children: JSX.Element
   style?: ViewStyle
+  onPress?: () => void
 }
-const CircleButton = ({ children, style }: Props): JSX.Element => {
+const CircleButton = ({ children, style, onPress }: Props): JSX.Element => {
   return (
-    <TouchableOpacity style={[Styles.circleButton, style]}>
+    <TouchableOpacity style={[Styles.circleButton, style]} onPress={onPress}>
       <Text style={Styles.circleButtonLabel}>{children}</Text>
     </TouchableOpacity>
   )

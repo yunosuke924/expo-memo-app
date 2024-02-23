@@ -2,6 +2,11 @@ import { View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import Header from '@/components/Header'
 import CircleButton from '@/components/CircleButton'
 import Icon from '@/components/Icon'
+import { router } from 'expo-router'
+
+const handleOnPress = (): void => {
+  router.back()
+}
 
 const Create = (): JSX.Element => {
   return (
@@ -10,9 +15,9 @@ const Create = (): JSX.Element => {
       <View style={styles.inputContainer}>
         <TextInput value='' style={styles.input} multiline />
       </View>
-        <CircleButton>
-          <Icon name="check" size={40} color='#fff'/>
-        </CircleButton>
+      <CircleButton onPress={handleOnPress}>
+        <Icon name='check' size={40} color='#fff' />
+      </CircleButton>
     </KeyboardAvoidingView>
   )
 }
