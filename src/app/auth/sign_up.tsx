@@ -10,7 +10,8 @@ import { Link, router } from 'expo-router'
 
 const handleOnPress = (): void => {
   // TODO:ログイン処理を行う
-  router.push('/memo/list')
+  // pushだと履歴が残るので、replaceを使って履歴を残さないようにする。
+  router.replace('/memo/list')
 }
 
 const Login = (): JSX.Element => {

@@ -10,7 +10,7 @@ import {
 
 const handleOnPress = (): void => {
   // TODO:ログイン処理を行う
-  router.push('/memo/list')
+  router.replace('/memo/list')
 }
 
 const Login = (): JSX.Element => {
