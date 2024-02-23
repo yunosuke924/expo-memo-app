@@ -1,14 +1,18 @@
 import Button from '@/components/Button'
 import Header from '@/components/Header'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
-  Alert,
   TouchableOpacity
 } from 'react-native'
+
+const handleOnPress = (): void => {
+  // TODO:ログイン処理を行う
+  router.push('/memo/list')
+}
 
 const Login = (): JSX.Element => {
   return (
@@ -18,12 +22,7 @@ const Login = (): JSX.Element => {
         <Text style={styles.title}>ログイン</Text>
         <TextInput style={styles.input} value='メールアドレス' />
         <TextInput style={styles.input} value='パスワード' />
-        <Button
-          label='ログイン'
-          onPress={() => {
-            Alert.alert('pressed!!')
-          }}
-        />
+        <Button label='ログイン' onPress={handleOnPress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>アカウントをお持ちでない方は</Text>
           <Link href='/auth/sign_up' asChild>

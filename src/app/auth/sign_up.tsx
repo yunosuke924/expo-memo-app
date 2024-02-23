@@ -7,7 +7,12 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
+
+const handleOnPress = (): void => {
+  // TODO:ログイン処理を行う
+  router.push('/memo/list')
+}
 
 const Login = (): JSX.Element => {
   return (
@@ -17,7 +22,7 @@ const Login = (): JSX.Element => {
         <Text style={styles.title}>新規登録</Text>
         <TextInput style={styles.input} value='メールアドレス' />
         <TextInput style={styles.input} value='パスワード' />
-        <Button label='新規登録' />
+        <Button label='新規登録' onPress={handleOnPress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>アカウントをお持ちの方は</Text>
           <Link href='/auth/log_in' asChild>
