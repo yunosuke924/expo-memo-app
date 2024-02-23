@@ -1,6 +1,13 @@
 import Button from '@/components/Button'
 import Header from '@/components/Header'
-import { View, Text, StyleSheet, TextInput } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Alert,
+  TouchableOpacity
+} from 'react-native'
 
 const Login = (): JSX.Element => {
   return (
@@ -10,10 +17,17 @@ const Login = (): JSX.Element => {
         <Text style={styles.title}>ログイン</Text>
         <TextInput style={styles.input} value='メールアドレス' />
         <TextInput style={styles.input} value='パスワード' />
-        <Button label='ログイン' />
+        <Button
+          label='ログイン'
+          onPress={() => {
+            Alert.alert('pressed!!')
+          }}
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>アカウントをお持ちでない方は</Text>
-          <Text style={styles.footerTextLink}>こちら</Text>
+          <TouchableOpacity>
+            <Text style={styles.footerTextLink}>こちら</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

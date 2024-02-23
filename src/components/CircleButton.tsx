@@ -1,5 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, type ViewStyle } from 'react-native'
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  type ViewStyle
+} from 'react-native'
 
 interface Props {
   children: JSX.Element
@@ -7,9 +12,9 @@ interface Props {
 }
 const CircleButton = ({ children, style }: Props): JSX.Element => {
   return (
-    <View style={[Styles.circleButton, style]}>
+    <TouchableOpacity style={[Styles.circleButton, style]}>
       <Text style={Styles.circleButtonLabel}>{children}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

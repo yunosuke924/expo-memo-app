@@ -1,6 +1,12 @@
 import Button from '@/components/Button'
 import Header from '@/components/Header'
-import { View, Text, StyleSheet, TextInput } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity
+} from 'react-native'
 
 const Login = (): JSX.Element => {
   return (
@@ -13,7 +19,9 @@ const Login = (): JSX.Element => {
         <Button label='新規登録' />
         <View style={styles.footer}>
           <Text style={styles.footerText}>アカウントをお持ちの方は</Text>
-          <Text style={styles.footerTextLink}>こちら</Text>
+          <TouchableOpacity>
+            <Text style={styles.footerTextLink}>こちら</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
