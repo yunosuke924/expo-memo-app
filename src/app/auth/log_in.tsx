@@ -1,5 +1,6 @@
 import Button from '@/components/Button'
 import Header from '@/components/Header'
+import { Link } from 'expo-router'
 import {
   View,
   Text,
@@ -25,9 +26,11 @@ const Login = (): JSX.Element => {
         />
         <View style={styles.footer}>
           <Text style={styles.footerText}>アカウントをお持ちでない方は</Text>
-          <TouchableOpacity>
-            <Text style={styles.footerTextLink}>こちら</Text>
-          </TouchableOpacity>
+          <Link href='/auth/sign_up' asChild>
+            <TouchableOpacity>
+              <Text style={styles.footerTextLink}>こちら</Text>
+            </TouchableOpacity>
+          </Link>
         </View>
       </View>
     </View>

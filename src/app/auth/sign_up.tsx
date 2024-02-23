@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native'
+import { Link } from 'expo-router'
 
 const Login = (): JSX.Element => {
   return (
@@ -19,9 +20,11 @@ const Login = (): JSX.Element => {
         <Button label='新規登録' />
         <View style={styles.footer}>
           <Text style={styles.footerText}>アカウントをお持ちの方は</Text>
-          <TouchableOpacity>
-            <Text style={styles.footerTextLink}>こちら</Text>
-          </TouchableOpacity>
+          <Link href='/auth/log_in' asChild>
+            <TouchableOpacity>
+              <Text style={styles.footerTextLink}>こちら</Text>
+            </TouchableOpacity>
+          </Link>
         </View>
       </View>
     </View>
