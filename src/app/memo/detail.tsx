@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import Header from '@/components/Header'
 import CircleButton from '@/components/CircleButton'
+import Icon from '@/components/Icon'
 const Detail = (): JSX.Element => {
   return (
     <View style={styles.container}>
@@ -21,7 +22,9 @@ const Detail = (): JSX.Element => {
             買い物リスト 書体やレイアウトなどを確認するために文章を入力します。
           </Text>
         </ScrollView>
-      <CircleButton style= {{ top: 160, bottom: 'auto' }}>+</CircleButton>
+      <CircleButton style= {{ top: 160, bottom: 'auto' }}>
+        <Icon name='pencil' size={40} color='#ffffff' />
+      </CircleButton>
     </View>
   )
 }
