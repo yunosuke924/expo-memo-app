@@ -41,6 +41,7 @@ const Create = (): JSX.Element => {
           onChangeText={(text) => {
             setBody(text)
           }}
+          autoFocus
         />
       </View>
       <CircleButton
