@@ -1,5 +1,4 @@
 import Button from '@/components/Button'
-import Header from '@/components/Header'
 import { Link, router } from 'expo-router'
 import {
   View,
@@ -17,7 +16,6 @@ const handleOnPress = (): void => {
 const Login = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Header />
       <View style={styles.inner}>
         <Text style={styles.title}>ログイン</Text>
         <TextInput style={styles.input} value='メールアドレス' />
