@@ -7,17 +7,17 @@ import { onSnapshot, doc } from 'firebase/firestore'
 import { db, auth } from '@/config'
 import { type Memo } from 'types/memo'
 
-const handleOnPress = (): void => {
-  router.push('/memo/edit')
+const handleOnPress = (id: string): void => {
+  router.push({ pathname: '/memo/edit', params: { id } })
 }
 const Detail = (): JSX.Element => {
-  const { id } = useLocalSearchParams()
+  const id = String(useLocalSearchParams().id)
   const [memo, setMemo] = useState<Memo | null>(null)
   useEffect(() => {
     if (auth.currentUser === null) {
       return
     }
-    const ref = doc(db, `users/${auth.currentUser.uid}/memos`, String(id))
+    const ref = doc(db, `users/${auth.currentUser.uid}/memos`, id)
     const unsubscribe = onSnapshot(ref, (memoDoc) => {
       const { id, body, createdAt, updatedAt } = memoDoc.data() as Memo
       setMemo({
@@ -42,7 +42,13 @@ const Detail = (): JSX.Element => {
       <ScrollView style={styles.memoBody}>
         <Text style={styles.memoBodyText}>{memo?.body}</Text>
       </ScrollView>
-      <CircleButton style={{ top: 60, bottom: 'auto' }} onPress={handleOnPress}>
+      {/* 編集ボタン */}
+      <CircleButton
+        style={{ top: 60, bottom: 'auto' }}
+        onPress={() => {
+          handleOnPress(id)
+        }}
+      >
         <Icon name='pencil' size={40} color='#ffffff' />
       </CircleButton>
     </View>
