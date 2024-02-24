@@ -20,7 +20,13 @@ const MemoListItem = ({ memo }: Props): JSX.Element | null => {
   const dateString = updatedAt.toDate().toLocaleString('ja-JP')
 
   return (
-    <Link href='memo/detail' asChild>
+    <Link
+      href={{
+        pathname: '/memo/detail',
+        params: { id }
+      }}
+      asChild
+    >
       <TouchableOpacity style={Styles.memoListItem}>
         <View>
           <Text style={Styles.memoListItemTitle} numberOfLines={1}>
